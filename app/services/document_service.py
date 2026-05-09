@@ -1,6 +1,6 @@
 
 from fastapi import UploadFile
-
+from app.services.text_extraction_service import extract_text
 from app.core.config import TRIP_STORAGE_DIR
 from app.schemas.document import DocumentResponse
 
@@ -17,6 +17,12 @@ def save_document(trip_id: str, file: UploadFile) -> DocumentResponse:
 
   with open(file_path, "wb") as buffer:
     buffer.write(file.file.read())
+
+  extracted_text = extract_text(file_path=file_path)
+
+  print("\n--- EXTRACTED TEXT PREVIEW ---")
+  print(extracted_text[:1000])
+  print("--- END PREVIEW ---\n")
 
   return DocumentResponse(
     filename=file.filename,
