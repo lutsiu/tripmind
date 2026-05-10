@@ -11,3 +11,7 @@ ENV = os.getenv("ENV", "dev")
 
 STORAGE_DIR = ROOT_DIR / "storage"
 TRIP_STORAGE_DIR = STORAGE_DIR / "trips"
+
+VECTOR_DB_DIR = STORAGE_DIR / "vector_db"
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
