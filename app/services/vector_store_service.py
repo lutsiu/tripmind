@@ -34,6 +34,10 @@ def store_chunks(
     embedding_function=get_embbeddings()
   )
 
+  vector_store.add_documents(documents)
+
+  print("Stored documents:", vector_store._collection.count())
+
   return len(documents)
 
 
